@@ -34,10 +34,10 @@ export default function PriceCard({ price, isSelected, onSelect, index }: PriceC
     const isPopular = index === 1;
 
     return (
-        <div className={`border rounded-lg p-6 cursor-pointer transition-all relative ${
+        <div className={`border rounded-lg p-6 hover:shadow-lg shadow-[#6AD1DB] cursor-pointer transition-all relative ${
             isSelected
                 ? 'border border-[#6AD1DB] bg-[#6AD1DB]/10'
-                : 'border-gray-200 hover:border-[#6AD1DB] hover:shadow-md'
+                : 'border-gray-200 hover:border-[#6AD1DB] '
         }`}
              onClick={() => onSelect(price)}
         >
