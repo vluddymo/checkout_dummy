@@ -1,6 +1,8 @@
 // /app/api/create-subscription/route.ts
 import { NextResponse } from 'next/server';
 import { stripe } from '@/lib/stripe';
+import { parseErrorMessage } from '@/lib/errors';
+
 
 export async function POST(request: Request) {
     try {
@@ -52,15 +54,16 @@ export async function POST(request: Request) {
             clientSecret: paymentIntent.client_secret,
         });
 
-    } catch (error: any) {
-        // Detailed error logging
+    } catch (error: unknown) {
+        const message = parseErrorMessage(error);
+
         console.error('Error creating subscription:', error);
-        console.error('Error message:', error.message);
+        console.error('Error message:', message);
 
         return NextResponse.json(
             {
                 error: 'Failed to create subscription',
-                message: error.message || 'Unknown error'
+                message,
             },
             { status: 500 }
         );

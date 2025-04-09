@@ -8,7 +8,6 @@ export default function SuccessPage() {
     const searchParams = useSearchParams();
     const router = useRouter();
 
-    const subscriptionId = searchParams.get('subscription_id');
     const redirectStatus = searchParams.get('redirect_status');
 
     useEffect(() => {
